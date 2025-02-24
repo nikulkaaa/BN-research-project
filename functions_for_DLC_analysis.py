@@ -194,7 +194,7 @@ def get_cm_to_pixel_ratio(actual_width: float, video_name, video_type):
     actual_distance = 40
     ratio_cm_to_pixel = image_draw.ratio_calc(actual_distance)
 
-def get_exploration_time(rois, rois_substracting, bpt_plus, bpt_minus):
+def get_exploration_time(rois, rois_substracting, bpt_plus, bpt_minus, fps:float):
     """
     Returns the total exploration time 
     """
@@ -214,7 +214,7 @@ def get_exploration_time(rois, rois_substracting, bpt_plus, bpt_minus):
             xleft=bpt_minus[0].get('x'), yleft=bpt_minus[0].get('y'),
             xright=bpt_minus[0].get('x'), yright=bpt_minus[0].get('y'),
             radius2 = substracting_roi.get("radius"),
-            min_frames=4, fps=30
+            min_frames=4, fps=fps
         )
         exploration.append({"name": roi_name, "exploration time":total_exploration_time})
 

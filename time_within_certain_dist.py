@@ -52,7 +52,7 @@ def calculate_time_within_distance(xnose, ynose, center_x, center_y, radius, min
     
     return time_with_minimum, total_time_within_distance
 
-def calculate_exploration_time(xnose, ynose, center_x, center_y, radius, xleft, yleft, xright, yright, radius2, min_frames=8, fps=30):
+def calculate_exploration_time(xnose, ynose, center_x, center_y, radius, xleft, yleft, xright, yright, radius2: float,  fps: float, min_frames=8) -> float:
     """
     Calculate the time spent within a certain distance of a given center point by the specified body part.
     
@@ -62,7 +62,7 @@ def calculate_exploration_time(xnose, ynose, center_x, center_y, radius, xleft, 
         distance (float): The radius within which to measure time spent.
         bp_tracking.t (str): The body part to track (default: 'nose').
         min_frames (int): Minimum consecutive frames within the distance to count time (default: 8).
-        fps (int): Frames per second of the recording (default: 30).
+        fps (float): Frames per second of the recording (default: 25).
         
     Returns:
         float: Time (in seconds) spent within the specified distance.
@@ -78,8 +78,8 @@ def calculate_exploration_time(xnose, ynose, center_x, center_y, radius, xleft, 
 
     # Distinguish between quick runby's and actual exploratory behavior by means of setting a frame minimum
     # secutive sequences where the condition is met
-    time_with_minimum = 0
     frame_count_with_minimum = 0
+    total_frame_count = 0
     
     # Calculate the total amount of frames the body partwas within the radius distance from the center of the object
     for dist_obj, dist_left, dist_right in zip(distance_to_object, distance_left, distance_right):
@@ -88,10 +88,12 @@ def calculate_exploration_time(xnose, ynose, center_x, center_y, radius, xleft, 
         else:
             if frame_count_with_minimum  >= min_frames:
                 # Convert frames to seconds
-                time_with_minimum += frame_count_with_minimum / fps
+                total_frame_count += frame_count_with_minimum
             # Reset counter when outside the range
             frame_count_with_minimum  = 0 
-    
+    # Calculate the total times
+    time_with_minimum = total_frame_count/fps
+
     # Final check in case the sequence ends within the distance
     if frame_count_with_minimum >= min_frames:
         time_with_minimum += frame_count_with_minimum / fps
