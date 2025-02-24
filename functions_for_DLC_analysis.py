@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 # Have this file in the same folder as the notebook
 import time_in_each_roi
-import Time_within_certain_dist
+import time_within_certain_dist
 
 #import image_draw
 import matplotlib
@@ -30,7 +30,7 @@ def get_bodyparts(df: pd.DataFrame, DLCscorer: str, fps: int, bpt_names: List[st
     """
     Creates a list of dictionaries for each body part. 
 
-    Eahc dictionary includes the name, velocity,
+    Each dictionary includes the name, velocity,
     time in the frames coordinates of the bofy part
     """
     bpts = []
@@ -157,20 +157,23 @@ def get_total_exploration_time(rois, rois_substracting, bpt_plus, bpt_minus):
             continue  
 
         # Extract first value from tuple (modify index if needed)
-        plus = [Time_within_certain_dist.calculate_time_within_distance(
+        plus = [time_within_certain_dist.calculate_time_within_distance(
             bpt.get('x'), bpt.get('y'),
             roi.get("center")[0], roi.get("center")[1], roi.get("radius"),
             min_frames=4, fps=30
         )[0] for bpt in bpt_plus]  # Taking the first value of the tuple
 
-        minus = [Time_within_certain_dist.calculate_time_within_distance(
+        minus = [time_within_certain_dist.calculate_time_within_distance(
             bpt.get('x'), bpt.get('y'),
             substracting_roi.get("center")[0], substracting_roi.get("center")[1], substracting_roi.get("radius"),
             min_frames=4, fps=30
         )[0] for bpt in bpt_minus]  # Taking the first value of the tuple
 
         # Compute total exploration time
-        total_exploration_time = max(plus, default=0)# - max(minus, default=0)
+        total_exploration_time = max(plus, default=0) - max(minus, default=0)
+
+        if total_exploration_time < 0.0:
+            total_exploration_time = 0
 
         exploration.append({"name": roi_name, "exploration time":total_exploration_time})
         
@@ -190,3 +193,30 @@ def get_cm_to_pixel_ratio(actual_width: float, video_name, video_type):
     # Used to calculate distance to pixel ratio ( in cm here) to change edit the text.
     actual_distance = 40
     ratio_cm_to_pixel = image_draw.ratio_calc(actual_distance)
+
+def get_exploration_time(rois, rois_substracting, bpt_plus, bpt_minus):
+    """
+    Returns the total exploration time 
+    """
+    exploration = []
+    for roi in rois:
+        roi_name = roi.get("name")
+        substracting_roi = next((r for r in rois_substracting if r.get("name") == roi_name), None)
+
+        if substracting_roi is None:
+            print(f"Warning: No matching subtracting ROI found for {roi_name}. Skipping subtraction.")
+            continue  
+
+        # Calculate the total exploration time for each ROI
+        total_exploration_time = time_within_certain_dist.calculate_exploration_time(
+            bpt_plus[0].get('x'), bpt_plus[0].get('y'),
+            roi.get("center")[0], roi.get("center")[1], roi.get("radius"),
+            xleft=bpt_minus[0].get('x'), yleft=bpt_minus[0].get('y'),
+            xright=bpt_minus[0].get('x'), yright=bpt_minus[0].get('y'),
+            radius2 = substracting_roi.get("radius"),
+            min_frames=4, fps=30
+        )
+        exploration.append({"name": roi_name, "exploration time":total_exploration_time})
+
+        
+    return exploration
