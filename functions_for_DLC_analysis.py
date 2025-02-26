@@ -212,7 +212,7 @@ def get_exploration_time(rois, rois_substracting, bpt_plus, bpt_minus, fps:float
             bpt_plus[0].get('x'), bpt_plus[0].get('y'),
             roi.get("center")[0], roi.get("center")[1], roi.get("radius"),
             xleft=bpt_minus[0].get('x'), yleft=bpt_minus[0].get('y'),
-            xright=bpt_minus[0].get('x'), yright=bpt_minus[0].get('y'),
+            xright=bpt_minus[1].get('x'), yright=bpt_minus[1].get('y'),
             radius2 = substracting_roi.get("radius"),
             min_frames=4, fps=fps
         )
