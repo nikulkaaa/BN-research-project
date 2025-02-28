@@ -1,7 +1,7 @@
 # BN-research-project
 ### This Read Me is for the purpose of introduction.
 Work done in colaboration with our Research Project supervisors
-![Work done in colaboration with our Research Project supervisors](image.png)
+![Work done in colaboration with our Research Project supervisors](#images-in-README/image.png)
 
 > [!IMPORTANT]
 > The files and scripts in this repository are purely for analysis of time spent in a specific **circular** region of interest. 
@@ -66,7 +66,7 @@ This part is a sum-up of all the functions and what you can find where. Can be u
 When you are not able to run DeepLabcut locally, due to either hardware specific issues or driver issues. 
 You can use an online Colab workspace with proper instructions provided by the DeepLabCut repository [here](https://github.com/DeepLabCut/DeepLabCut/blob/main/examples/COLAB/COLAB_YOURDATA_TrainNetwork_VideoAnalysis.ipynb).
 
-Upon opening the link, you can find a small button up top: ![alt text](image-1.png)
+Upon opening the link, you can find a small button up top: ![alt text](#images-in-README/image-1.png)
 
 By clicking on this you will create a copy of the Jupyter notebook, make sure you save this to your drive so you dont have to edit the file paths everytime you open the notebook, nor have to go throught their repository for access. 
 
