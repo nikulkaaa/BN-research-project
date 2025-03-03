@@ -1,12 +1,20 @@
-# BN-research-project
+# Behavioural Neurosciences Research Project
+## Nikola Bátová & Jesse ten Broeke
+
+n.batova@student.rug.nl 
+
+j.ten.broeke.1@student.rug.nl
+
 ### This Read Me is for the purpose of introduction.
 Work done in colaboration with our Research Project supervisors
-![Work done in colaboration with our Research Project supervisors](#images-in-README/image.png)
+![](imgs/image.png)
+
+$_{Work\ done\ in\ colaboration\ with\ our\ research\ project\ supervisors.}$
 
 > [!IMPORTANT]
 > The files and scripts in this repository are purely for analysis of time spent in a specific **circular** region of interest. 
 
-How to, for the the use of Deeplabcut on Colab can be found [here](#deeplabcut-through-colab), the local use of the software ***(Recommended; if possible through school or company GPU clusters, personal machines are also fine)***.
+A How to on the use of Deeplabcut on Colab can be found [here](#deeplabcut-through-colab), the local use of the software ***(Recommended; if possible through school or company GPU clusters, personal machines are also fine)***.
 Can be guided using the DLC github page (Mathis labs) [here](https://github.com/DeepLabCut/DeepLabCut).
 
 > [!NOTE]
@@ -43,11 +51,16 @@ This part is a sum-up of all the functions and what you can find where. Can be u
 
 [analyze_multiple_videos.ipynb](analyze_multiple_videos.ipynb) = A Jupyter Notebook for the analysis of a folder of videos and their comparison. Does not provide graphs.  
 
+[draw_circles_for_objects.ipynb](draw_circles_for_objects.ipynb)  =  A Jupyter Notebook that serves as a backup for when the neural network cannot properly deduce the location of the objects (ie. due to shiny floors). So a manual alternative.
+
 [functions_for_DLC_analysis.py](functions_for_DLC_analysis.py) = A Python script containing most functions that will be used for analysis and plottin of data in the [analyze_multiple_videos](analyze_multiple_videos.ipynb) and [loadandanalyzeDLCdata](loadandanalyzeDLCdata.ipynb) Notebooks.  
 
 [image_draw.py](image_draw.py) = this file contains the functions needed for the [set_ratios](set_ratios.ipynb) Notebook. Regarding the pixel-cm ratio calculations. 
 
 [loadandanalyzeDLCdata.ipynb](loadandanalyzeDLCdata.ipynb) = A Jupyter Notebook for the analysis of **one** video, providing graphs and other means for that specific data as well. Not updated to the new function names yet within [functions_for_DLC_analysis](functions_for_DLC_analysis.py).
+
+[loss.py](loss.py) = A script to plot the Colab training output data, to visualize the plateauing of the loss. 
+
 
 [README.md](README.md) = This README containing important and supplementary information on the use and goals of the project. 
 
@@ -59,14 +72,12 @@ This part is a sum-up of all the functions and what you can find where. Can be u
 
 
 
-
-
 ## DeepLabCut through Colab
 
 When you are not able to run DeepLabcut locally, due to either hardware specific issues or driver issues. 
 You can use an online Colab workspace with proper instructions provided by the DeepLabCut repository [here](https://github.com/DeepLabCut/DeepLabCut/blob/main/examples/COLAB/COLAB_YOURDATA_TrainNetwork_VideoAnalysis.ipynb).
 
-Upon opening the link, you can find a small button up top: ![alt text](#images-in-README/image-1.png)
+Upon opening the link, you can find a small button up top: ![alt text](imgs/image-1.png)
 
 By clicking on this you will create a copy of the Jupyter notebook, make sure you save this to your drive so you dont have to edit the file paths everytime you open the notebook, nor have to go throught their repository for access. 
 

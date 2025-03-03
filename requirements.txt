@@ -5,3 +5,4 @@ scipy
 opencv-python
 tables
 streamlit
+statsmodels
