@@ -1,7 +1,7 @@
 import pandas as pd
 
 # File path (replace with your file name)
-input_file = "BN-research-project/data/nika_data.csv"  # The file with added 'Sex', 'Sleep', and 'Cycle' columns
+input_file = "BN-research-project/data/clean_explorations.csv"  # The file with added 'Sex', 'Sleep', and 'Cycle' columns
 output_file = "BN-research-project/data/jesse_data.csv"  # Output file without SD groups
 
 # Load the data

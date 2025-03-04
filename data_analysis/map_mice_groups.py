@@ -1,9 +1,9 @@
 import pandas as pd
 
 # File paths (replace with actual file names)
-filtered_file = "BN-research-project/data/filtered_explorations.csv"  # The test-only CSV
-mapping_file = "BN-research-project/data/mice_groups.csv"  # The file containing sex, sleep, and cycle info
-output_file = "BN-research-project/data/annotated_explorations.csv"  # Output file with new columns added
+filtered_file = "BN-research-project/data/object_exploration.csv"  # The test-only CSV
+mapping_file = "BN-research-project/data_analysis/mice_groups.csv"  # The file containing sex, sleep, and cycle info
+output_file = "BN-research-project/data/full_explorations.csv"  # Output file with new columns added
 
 # Load the filtered test trials CSV
 df_filtered = pd.read_csv(filtered_file)
